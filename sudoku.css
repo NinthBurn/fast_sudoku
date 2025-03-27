@@ -13,8 +13,9 @@ body {
     --cell-size: min(8vh, 8vw);
     --font-size: calc(var(--cell-size) * 0.5);
     --button-size: calc(var(--cell-size) * 0.65);
-    --button-font-size: calc(var(--button-size) * 0.5);
-    --large-button-size: 25vw;
+    --button-font-size: calc(var(--button-size) * 0.45);
+    --large-button-size: fit-content;
+    --large-button-font-size: min(var(--button-font-size), 24px);
 }
 
 body {
@@ -86,18 +87,6 @@ h3 {
     user-select: none;
 }
 
-.cell:nth-child(3n) {
-    border-right: 2px solid #000;
-}
-
-.cell:nth-child(9n) {
-    border-right: none;
-}
-
-.row:nth-child(3n) .cell {
-    border-bottom: 2px solid #000;
-}
-
 .fixed {
     background-color: #f0f0f0;
     color: #000;
@@ -152,13 +141,15 @@ h3 {
 
 .controls {
     width: fit-content;
+    display: flex;
+    gap: min(2vw, 32px);
     max-width: 95vw;
 }
 
 .controls button {
     width: var(--large-button-size);
-    padding: 30px 30px;
-    font-size: 16px;
+    padding: 10px 20px;
+    font-size: var(--large-button-font-size);
     background-color: #2ecc71;
     color: white;
     border: none;
@@ -251,4 +242,16 @@ h3 {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+}
+
+.cell:nth-child(3n) {
+    border-right: 2px solid #000;
+}
+
+.cell:nth-child(9n) {
+    border-right: none;
+}
+
+.row:nth-child(3n) .cell {
+    border-bottom: 2px solid aliceblue;
 }

@@ -1,0 +1,99 @@
+.night-mode-text {
+    color: aliceblue;
+}
+
+.night-mode-button {
+    position: absolute;
+    align-self: self-start;
+}
+
+.night-mode-body {
+    background-color: rgba(39,43,45,1);
+    color: aliceblue;
+    border-color: aliceblue;
+}
+
+.night-mode-cell {
+    background-color: rgb(28, 33, 44);
+    color: aliceblue;
+    border-color: rgba(255, 255, 255, 0.452);
+}
+
+.night-mode-cell-grid {
+    background-color: rgb(85, 129, 165);
+    color: aliceblue;
+    border-color: aliceblue;
+}
+
+.cell-border-right {
+    border-right: 2px solid #000;
+}
+
+.cell-border-bottom {
+    border-bottom: 2px solid #000;
+}
+
+.night-mode-cell .cell-border-bottom {
+    border-bottom: 2px solid aliceblue;
+}
+
+.night-mode-cell .cell-border-right {
+    border-bottom: 2px solid aliceblue;
+}
+
+.night-mode-cell .cell:nth-child(3n) {
+    border-right: 2px solid aliceblue;
+}
+
+.night-mode-cell .cell:nth-child(9n) {
+    border-right: none;
+}
+
+.night-mode-cell .row:nth-child(3n) .cell {
+    border-bottom: 2px solid aliceblue;
+}
+
+
+/* Highlighting */
+.night-mode-cell .cell-highlight {
+    background-color: #6daeda;
+}
+
+.night-mode-cell .cell-highlight-soft {
+    background-color: #26292b;
+}
+
+.night-mode-cell .cell-highlight-wrong {
+    background-color: #e9785c;
+}
+
+.night-mode-cell .cell-highlight-correct {
+    background-color: #8ac274;
+}
+
+.night-mode-cell .cell-highlight-correct.selected-cell {
+    background-color: #5d5d66;
+}
+
+.night-mode-cell .selected-cell {
+    background-color: #5d5d66;
+}
+
+/* For fixed cells that are selected */
+.night-mode-cell .fixed .selected-cell {
+    background-color: #5d5d66;
+}
+
+/* user input */
+.night-mode-cell .user-input {
+    color: #4bf592;
+}
+
+.night-mode-cell .incorrect {
+    color: #df7165;
+    background-color: #000;
+}
+
+.night-mode-cell .number-highlight {
+    color: aliceblue;
+}

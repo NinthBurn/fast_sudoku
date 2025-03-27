@@ -5,7 +5,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const checkSolutionBtn = document.getElementById('checkSolutionBtn');
     const setDifficultyBtn = document.getElementById('setDifficultyBtn');
     const difficultyDialog = document.getElementById('difficultyDialog');
-
+    const nightModeToggle = document.getElementById('nightModeButton');
+    
+    let nightModeToggled = false;
     let selectedNumber = null;
     let selectedCell = null;
     let solution = [];
@@ -25,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
     newGameBtn.addEventListener('click', initGame);
     checkSolutionBtn.addEventListener('click', checkSolution);
     setDifficultyBtn.addEventListener('click', setDifficulty);
+    nightModeToggle.addEventListener('click', toggleNightMode);
 
     function initGame() {
         // Clear the grid
@@ -35,6 +38,9 @@ document.addEventListener('DOMContentLoaded', function() {
         generateSudoku();
         createGridCells();
         clearHighlights();
+
+        if(nightModeToggled)
+            sudokuGrid.childNodes.forEach(c => c.classList.toggle('night-mode-cell'));
     }
 
     function setDifficulty() {
@@ -210,6 +216,25 @@ document.addEventListener('DOMContentLoaded', function() {
         numberButtons.appendChild(clearBtn);
     }
 
+    function toggleNightMode() {
+        document.body.classList.toggle('night-mode-body');
+        sudokuGrid.childNodes.forEach(c => c.classList.toggle('night-mode-cell'));
+        document.querySelectorAll('.number-btn').forEach(b => b.classList.toggle('night-mode-cell'));
+        document.querySelectorAll('h1').forEach(h => h.classList.toggle('night-mode-text'));
+        //document.querySelectorAll('h3').forEach(h => h.classList.toggle('night-mode-text'));
+        document.getElementById('sudokuGrid').classList.toggle('night-mode-cell');
+        document.getElementById('sudokuGrid').classList.toggle('night-mode-cell-grid');
+
+        if(nightModeToggled) {
+            document.getElementById('nightModeIcon').src = "night-mode-1.svg";
+
+        } else {
+            document.getElementById('nightModeIcon').src = "night-mode-2.svg";
+        }
+
+        nightModeToggled = !nightModeToggled;
+    }
+
     function generateSudoku() {
         // Generate a solved Sudoku board
         solution = generateSolvedBoard();
@@ -227,12 +252,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 cell.dataset.row = i;
                 cell.dataset.col = j;
                 
-                // Add thicker borders for 3x3 blocks
-                if (j % 3 === 2 && j !== 8) {
-                    cell.style.borderRight = '2px solid #000';
-                }
                 if (i % 3 === 2 && i !== 8) {
-                    cell.style.borderBottom = '2px solid #000';
+                    cell.classList.add('cell-border-bottom');
                 }
                 
                 // If this is a fixed number from the puzzle
@@ -243,7 +264,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     cell.classList.add('user-input');
                 }
                 
-                // Add click handler for all cells
                 cell.addEventListener('click', () => handleCellClick(cell, i, j));
                 
                 sudokuGrid.appendChild(cell);
