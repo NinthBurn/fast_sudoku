@@ -1,0 +1,254 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f5f5f5;
+    padding: 1vh;
+    height: 100vh;
+    width: 100vw;
+}
+
+:root {
+    --cell-size: min(8vh, 8vw);
+    --font-size: calc(var(--cell-size) * 0.5);
+    --button-size: calc(var(--cell-size) * 0.65);
+    --button-font-size: calc(var(--button-size) * 0.5);
+    --large-button-size: 25vw;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    padding: 2vmin;
+    box-sizing: border-box;
+}
+
+.sudoku-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: calc(var(--cell-size) * 9 + 6px); /* 9 cells + borders */
+}
+
+.cell {
+    font-size: var(--font-size);
+}
+
+.number-buttons {
+    display: flex;
+    gap: 1.5vmin;
+    margin: 2vmin;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* max-width: calc(var(--button-size) * 10 + 1.5vmin * 9); */
+}
+
+@media (max-width: 600px) {
+    :root {
+        --cell-size: min(10vw, 50px);
+    }
+}
+
+h1 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+h3 {
+    color: #376a9c;
+    margin: 0px;
+    padding: 10px;
+}
+
+.sudoku-container {
+    margin-bottom: 20px;
+}
+
+.sudoku-grid {
+    border: 3px solid #000;
+    display: grid;
+    grid-template-columns: repeat(9, var(--cell-size));
+    grid-template-rows: repeat(9, var(--cell-size));
+}
+
+.cell {
+    border: 1px solid #999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: calc(var(--font-size) * 0.8);
+    font-weight: bold;
+    cursor: pointer;
+    background-color: white;
+    user-select: none;
+}
+
+.cell:nth-child(3n) {
+    border-right: 2px solid #000;
+}
+
+.cell:nth-child(9n) {
+    border-right: none;
+}
+
+.row:nth-child(3n) .cell {
+    border-bottom: 2px solid #000;
+}
+
+.fixed {
+    background-color: #f0f0f0;
+    color: #000;
+    cursor: default;
+}
+
+.user-input {
+    color: #2980b9;
+}
+
+.incorrect {
+    color: #e74c3c;
+}
+
+.number-highlight {
+    color: #5ba7fd;
+}
+
+.number-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    width: 90vw;
+}
+
+.number-btn {
+    width: var(--button-size);
+    height: var(--button-size);
+    font-size: var(--button-font-size);
+    font-weight: bold;
+    border: 2px solid #3498db;
+    background-color: #fff;
+    color: #3498db;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s;
+}
+
+.number-btn:hover {
+    background-color: #3498db;
+    color: white;
+}
+
+.number-btn.selected {
+    background-color: #2980b9;
+    color: white;
+    border-color: #2980b9;
+}
+
+.controls {
+    width: fit-content;
+    max-width: 95vw;
+}
+
+.controls button {
+    width: var(--large-button-size);
+    padding: 30px 30px;
+    font-size: 16px;
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.controls button:hover {
+    background-color: #27ae60;
+}
+
+/* Highlighting for selected cell's row and column */
+.cell-highlight {
+    background-color: #fffacd;
+}
+
+.cell-highlight-soft {
+    background-color: #e0dcca;
+}
+
+.cell-highlight-wrong {
+    background-color: #eeb199;
+}
+
+.cell-highlight-correct {
+    background-color: #ace685;
+}
+
+.cell-highlight-correct.selected-cell {
+    background-color: #c2dddf;
+}
+
+.selected-cell {
+    background-color: #ffeb99;
+}
+
+/* For fixed cells that are selected */
+.fixed.selected-cell {
+    background-color: #c2dddf;
+}
+
+/* Difficulty Dialog Styles */
+.dialog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.dialog-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.difficulty-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.difficulty-options button {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.difficulty-options button:hover {
+    background-color: #3498db;
+    color: white;
+}
+
+.dialog-close {
+    padding: 8px 16px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
