@@ -19,6 +19,12 @@
     border-color: rgba(255, 255, 255, 0.452);
 }
 
+.night-mode-btn {
+    background-color: rgb(74, 80, 92);
+    color: aliceblue;
+    border-color: rgba(255, 255, 255, 0.452);
+}
+
 .night-mode-cell-grid {
     background-color: rgb(85, 129, 165);
     color: aliceblue;

@@ -34,9 +34,17 @@
                 <button data-difficulty="0.7">Medium</button>
                 <button data-difficulty="0.8">Hard</button>
             </div>
-            <button class="dialog-close">Close</button>
+            <button class="dialog-close" id="difficultyDialogClose">Close</button>
         </div>
     </div>
-    <script src="sudoku.js" defer></script>
+
+    <div id="generalDialog" class="dialog-overlay">
+        <div class="dialog-content">
+            <h3 id="generalDialogTitle"></h3>
+            <h4 id="generalDialogMessage"></h3>
+            <button class="dialog-close" id="generalDialogClose">Close</button>
+        </div>
+    </div>
+    <script type="module" src="sudoku.js"></script>
 </body>
 </html>
